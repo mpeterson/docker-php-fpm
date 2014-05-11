@@ -4,7 +4,7 @@ VERSION=0.1
 
 .PHONY: all build tag_latest
 
-all: build
+all: build tag_latest
 
 build:
 	docker build -t $(AUTHOR)/$(NAME):$(VERSION) --rm image
