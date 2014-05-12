@@ -1,10 +1,10 @@
 AUTHOR=mpeterson
 NAME=php5_fpm
-VERSION=0.1
+VERSION=0.2
 
 .PHONY: all build tag_latest
 
-all: build tag_latest
+all: build
 
 build:
 	docker build -t $(AUTHOR)/$(NAME):$(VERSION) --rm image
