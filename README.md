@@ -1,13 +1,14 @@
-# mpeterson/php5_fpm
+# mpeterson/php_fpm
 ## Features
-  * **Imports all docker links environmental variables to the php5-fpm main configuration. So they can be used from PHP scripts.**
+  * **Imports all docker links environmental variables to the php-fpm main configuration. So they can be used from PHP scripts.**
   * Allow to override or add files to the image when building it.
+  * Using PHP 7
 
 ## Usage
 This example considers that you have a [data-only container](http://docs.docker.io/use/working_with_volumes/) and a DB container running and linked to an [ambassador](http://docs.docker.io/use/ambassador_pattern_linking/) however it's not needed for it to run correctly.
 
 ```bash
-sudo docker run -d --volumes-from www_data --name php --link db_ambassador:db -p 127.0.0.1::22 mpeterson/php5_fpm
+sudo docker run -d --volumes-from www_data --name php --link db_ambassador:db -p 127.0.0.1::22 mpeterson/php_fpm
 ```
 
 Since the idea is to use this linked with another container the PHP port (9000) is not exposed in the previous example.
@@ -29,7 +30,7 @@ For this a folder ```overrides/``` inside the path ```image/``` can be created. 
 After that just run ```sudo make``` and the image will be created.
 
 ### Docker links
-The idea was to have a container that only contained php5-fpm and not a full stack to allow flexibility. Because of that there was a need to create a way to reference the links from within the php5-fpm configurations so that it was possible to reference the DB connections for example. A mechanism was put in place to expose all docker link environmental variables to the PHP scripts. They can later be accessed using for example, in the case of MySQL:
+The idea was to have a container that only contained php-fpm and not a full stack to allow flexibility. Because of that there was a need to create a way to reference the links from within the php-fpm configurations so that it was possible to reference the DB connections for example. A mechanism was put in place to expose all docker link environmental variables to the PHP scripts. They can later be accessed using for example, in the case of MySQL:
 
 ```php
 getenv('MYSQL_PORT_3306_TCP_ADDR') . ':' . getenv('MYSQL_PORT_3306_TCP_PORT');

@@ -4,7 +4,7 @@ if [[ ! "$(ls -A $DATA_DIR)" ]]; then
 fi
 
 # Make docker env variables available from within fpm
-CONF_FILE=/etc/php5/fpm/pool.d/www.conf
+CONF_FILE=/etc/php/7.0/fpm/pool.d/www.conf
 # Function to update the fpm configuration to make the service environment variables available
 function setEnvironmentVariable() {
 
@@ -16,7 +16,7 @@ function setEnvironmentVariable() {
     # Check whether variable already exists
     if grep -q $1 $CONF_FILE; then
         # Reset variable
-        sed -i "s/^env\[$1.*/env[$1] = $2/g" $CONF_FILE
+        sed -i -e "s|^env\[$1.*|env[$1] = $2|g" $CONF_FILE
     else
         # Add variable
         echo "env[$1] = $2" >> $CONF_FILE
@@ -24,7 +24,7 @@ function setEnvironmentVariable() {
 }
 
 # Clean all docker env variables
-sed -i "/^env[.*_PORT_.*]/d" $CONF_FILE
+sed -i -e "/^env[.*_PORT_.*]/d" $CONF_FILE
 
 # Grep for variables that look like docker set them (_PORT_)
 for _curVar in `env | grep _PORT_ | awk -F = '{print $1}'`;do
@@ -33,4 +33,6 @@ for _curVar in `env | grep _PORT_ | awk -F = '{print $1}'`;do
     setEnvironmentVariable ${_curVar} ${!_curVar}
 done
 
-/usr/sbin/php5-fpm -F >> /var/log/php5-fpm.log 2>&1
+mkdir -p /run/php
+
+/usr/sbin/php-fpm7.0 -F >> /var/log/php7.0-fpm.log

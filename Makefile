@@ -1,13 +1,13 @@
 AUTHOR=mpeterson
-NAME=php5_fpm
-VERSION=0.2
+NAME=php_fpm
+VERSION=0.3
 
 .PHONY: all build tag_latest
 
 all: build
 
 build:
-	docker build -t $(AUTHOR)/$(NAME):$(VERSION) --rm image
+	docker build -t $(AUTHOR)/$(NAME):$(VERSION) --rm .
 
 tag_latest:
 	docker tag $(AUTHOR)/$(NAME):$(VERSION) $(AUTHOR)/$(NAME):latest
