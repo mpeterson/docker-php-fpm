@@ -1,4 +1,4 @@
-FROM mpeterson/base:0.2
+FROM mpeterson/base:0.3
 MAINTAINER mpeterson <docker@peterson.com.ar>
 
 # Make APT non-interactive
