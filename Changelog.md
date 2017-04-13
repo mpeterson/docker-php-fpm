@@ -1,3 +1,6 @@
+## 0.5 (release date: 2017-04-11)
+  * FIX: Depend on [mpeterson/base](https://hub.docker.com/r/mpeterson/base/) 0.4 which is based on Ubuntu 16.04
+
 ## 0.4 (release date: 2017-04-11)
   * FIX: Depend on [mpeterson/base](https://hub.docker.com/r/mpeterson/base/) 0.3 which is based on Ubuntu 16.04
 
