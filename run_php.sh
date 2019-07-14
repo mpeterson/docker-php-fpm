@@ -4,7 +4,7 @@ if [[ ! "$(ls -A $DATA_DIR)" ]]; then
 fi
 
 # Make docker env variables available from within fpm
-CONF_FILE=/etc/php/7.0/fpm/pool.d/www.conf
+CONF_FILE=/etc/php/7.2/fpm/pool.d/www.conf
 # Function to update the fpm configuration to make the service environment variables available
 function setEnvironmentVariable() {
 
@@ -35,4 +35,4 @@ done
 
 mkdir -p /run/php
 
-/usr/sbin/php-fpm7.0 -F >> /var/log/php7.0-fpm.log
+/usr/sbin/php-fpm7.2 -F >> /var/log/php7.2-fpm.log

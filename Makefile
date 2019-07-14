@@ -1,6 +1,6 @@
 AUTHOR=mpeterson
 NAME=php_fpm
-VERSION=0.5
+VERSION=0.6
 
 .PHONY: all build tag_latest
 
